@@ -1,0 +1,14 @@
+asgiref==3.5.0
+Django==4.0.3
+pip==21.1.2
+setuptools==57.0.0
+sqlparse==0.4.2
+tzdata==2021.5
+wheel==0.36.2
+djangorestframework~=3.13.1
+pillow~=9.0.1
+djangorestframework-gis~=0.18
+django-cors-headers==3.11.0
+psycopg2~=2.9.3
+django-cleanup==6.0.0
+django-resized==1.0.0

@@ -1,0 +1,1606 @@
+{
+	"info": {
+		"_postman_id": "954f3c5e-c28b-4704-8e37-de999b49bc45",
+		"name": "Fast Eat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"exampleUser@gmail.com\",\r\n    \"username\": \"exampleUser\",\r\n    \"password\": \"examplepa$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"token\", jsonData.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "a7d5f01a1abf5f3829d59a4cfdcf3077a8bdbf58",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"exampleUser@gmail.com\",\r\n    \"password\": \"examplepa$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token a7d5f01a1abf5f3829d59a4cfdcf3077a8bdbf58",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"password\": \"examplepa$$w0rd\",\r\n    \"new_password\": \"kopytko123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/edit/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"edit",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User-Actions",
+			"item": [
+				{
+					"name": "Cart",
+					"item": [
+						{
+							"name": "Get Cart",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Cart",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartItems\":{\r\n        \"item\": 1,\r\n        \"itemAddons\": [1, 2],\r\n        \"amount\": 5\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cart",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Item To Cart",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item\": 2,\r\n    \"itemAddons\": [],\r\n    \"amount\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart/edit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cart Item",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart/edit/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart",
+										"edit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cart Item",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 10,\r\n    \"itemAddons\": [1]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart/edit/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart",
+										"edit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Cart Item 2",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 1883a9f30a95504a7514566924138f96d0788c3d",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 5,\r\n    \"itemAddons\": [1, 2]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/venues/1/cart/edit/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"venues",
+										"1",
+										"cart",
+										"edit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "my orders - anonymous",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "my orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0740539cea1e78c859f60c7be15abdb4902f623c",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0740539cea1e78c859f60c7be15abdb4902f623c",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"orderItems\": [\r\n            {\r\n            \"item\": 64,\r\n            \"amount\": 2000,\r\n            \"itemAddons\": []\r\n            },\r\n            {\r\n                \"item\": 64,\r\n            \"amount\": 2000,\r\n            \"itemAddons\": []\r\n            }\r\n    ],\r\n    \"venue\": 7,\r\n    \"delivery\": {\r\n        \"city\": \"opole\",\r\n        \"street\": \"plebisytowa\",\r\n        \"houseNumber\": \"12\",\r\n        \"contact_phone\": \"123123123\"\r\n    }\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Venue",
+			"item": [
+				{
+					"name": "add/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"owner\": {\r\n        \"email\": \"exampleVenue@gmail.com\",\r\n        \"username\": \"exampleVenue\",\r\n        \"password\": \"examplepa$$w0rd\"\r\n    },\r\n    \"name\": \"example name\",\r\n    \"kitchenType\": [\r\n        1, 2, 3\r\n    ],\r\n    \"zipCode\": \"45-050\",\r\n    \"city\": \"Opole\",\r\n    \"street\": \"Sezamkowa\",\r\n    \"phoneNumber\": \"+ 48 888 888 888\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/venues/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);\r",
+									"pm.globals.set(\"token\", jsonData.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"email\": \"exampleVenue@gmail.com\",\r\n    \"password\": \"examplepa$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 113ff8e3e8a8f7a56bc6474fcc35721875a096ff",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"password\": \"examplepa$$w0rd\",\r\n    \"new_password\": \"kopytko123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/user/edit/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"edit",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venue-Actions",
+			"item": [
+				{
+					"name": "Menu",
+					"item": [
+						{
+							"name": "category",
+							"item": [
+								{
+									"name": "item",
+									"item": [
+										{
+											"name": "addon",
+											"item": [
+												{
+													"name": "add addon to item",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "                   {\r\n                            \"name\": \"smietana\",\r\n                            \"description\": null,\r\n                            \"sequence\": 1,\r\n                            \"price\": 100\r\n                    }",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "http://127.0.0.1:8000/items/42/addon",
+															"protocol": "http",
+															"host": [
+																"127",
+																"0",
+																"0",
+																"1"
+															],
+															"port": "8000",
+															"path": [
+																"items",
+																"42",
+																"addon"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "delete addon",
+													"request": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "                   {\r\n                            \"name\": \"smietana\",\r\n                            \"description\": null,\r\n                            \"sequence\": 1,\r\n                            \"price\": 100\r\n                        }",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "http://127.0.0.1:8000/addons/26",
+															"protocol": "http",
+															"host": [
+																"127",
+																"0",
+																"0",
+																"1"
+															],
+															"port": "8000",
+															"path": [
+																"addons",
+																"26"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "edit addon",
+													"request": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Authorization",
+																"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "                   {\r\n                            \"name\": \"smi42et2ana\",\r\n                            \"description\": null,\r\n                            \"sequence\": 1,\r\n                            \"price\": 100\r\n                        }",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "http://127.0.0.1:8000/addons/24",
+															"protocol": "http",
+															"host": [
+																"127",
+																"0",
+																"0",
+																"1"
+															],
+															"port": "8000",
+															"path": [
+																"addons",
+																"24"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "add item to categry",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "    {\r\n                    \"name\": \"Ukrrainfskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": []\r\n\r\n    }",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://127.0.0.1:8000/categories/24/item",
+													"protocol": "http",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"categories",
+														"24",
+														"item"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "edit item",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "\r\n                {\r\n                    \"name\": \"Burger 544\",\r\n                    \"description\": \"PikantnyBurger\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2500,\r\n                    \"addons\": [\r\n                        {\r\n                            \"id\": 9,\r\n                            \"name\": \"pikle\",\r\n                            \"description\": null,\r\n                            \"sequence\": 0,\r\n                            \"price\": 100\r\n                        },\r\n                        {\r\n                            \"id\": 10,\r\n                            \"name\": \"pomidor\",\r\n                            \"description\": null,\r\n                            \"sequence\": 1,\r\n                            \"price\": 100\r\n                        }\r\n                    ]\r\n                }",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://127.0.0.1:8000/items/40",
+													"protocol": "http",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"items",
+														"40"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "delete item",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://127.0.0.1:8000/items/39",
+													"protocol": "http",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"items",
+														"39"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "add category to menu",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "token df8d314b6d6c7fffd3d23a86e6c61b139c43e5c0",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\r\n            \"name\": \"Dupa\",\r\n            \"description\": \"\",\r\n            \"sequence\": 0,\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Ruskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": []\r\n                }\r\n            ]\r\n        }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/categories/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"categories",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "edit category",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\r\n            \"name\": \"Pierogi-426\",\r\n            \"description\": \"\",\r\n            \"sequence\": 0,\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Ruskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": []\r\n                },\r\n                {\r\n                    \"name\": \"Ukrainskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": [\r\n                        {\r\n                            \"name\": \"cebuldska\",\r\n                            \"description\": null,\r\n                            \"sequence\": \"1\",\r\n                            \"price\": 100,\r\n                            \"image\": null\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/categories/28",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"categories",
+												"28"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete category",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\r\n            \"name\": \"Pierogi\",\r\n            \"description\": \"\",\r\n            \"sequence\": 0,\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Ruskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": []\r\n                },\r\n                {\r\n                    \"name\": \"Ukrainskie\",\r\n                    \"description\": \"\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"addons\": [\r\n                        {\r\n                            \"name\": \"cebulka\",\r\n                            \"description\": null,\r\n                            \"sequence\": \"1\",\r\n                            \"price\": 100,\r\n                            \"image\": null\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/categories/28",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"categories",
+												"28"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "get menu",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/menu/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"menu",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add new menu",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token df8d314b6d6c7fffd3d23a86e6c61b139c43e5c0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categories\": [\r\n        {\r\n            \"items\": [\r\n                {\r\n                    \"addons\": [\r\n                        {\r\n                            \"name\": \"pikle\",\r\n                            \"description\": null,\r\n                            \"sequence\": 0,\r\n                            \"price\": 100,\r\n                            \"image\": null\r\n                        },\r\n                        {\r\n                            \"name\": \"pomidor\",\r\n                            \"description\": null,\r\n                            \"sequence\": \"1\",\r\n                            \"price\": 100,\r\n                            \"image\": null\r\n                        }\r\n                    ],\r\n                    \"name\": \"Burger 1\",\r\n                    \"description\": \"PikantnyBurger\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2500,\r\n                    \"image\": null,\r\n                    \"category\": \"2\"\r\n                },\r\n                {\r\n                    \"addons\": [],\r\n                    \"name\": \"Burger2\",\r\n                    \"description\": null,\r\n                    \"sequence\": \"1\",\r\n                    \"price\": 2499,\r\n                    \"image\": null\r\n                }\r\n            ],\r\n            \"name\": \"Burgery\",\r\n            \"description\": null,\r\n            \"sequence\": 0\r\n        },\r\n        {\r\n            \"items\": [\r\n                {\r\n                    \"addons\": [],\r\n                    \"name\": \"Pasta\",\r\n                    \"description\": \"Włoska pasta\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"image\": null\r\n                }\r\n            ],\r\n            \"name\": \"CoNowego\",\r\n            \"description\": \"Nasze nowe potrawy\",\r\n            \"sequence\": 0\r\n        }\r\n    ],\r\n    \"name\": \"FirstMenu\",\r\n    \"description\": \"testoweMenu\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/menu/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"menu",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "path menu",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categories\": [\r\n        {\r\n            \"items\": [\r\n                {\r\n                    \"addons\": [\r\n                        {\r\n                            \"name\": \"pikle\",\r\n                            \"description\": null,\r\n                            \"sequence\": 0,\r\n                            \"price\": 100,\r\n                            \"image\": null,\r\n                            \"item\": \"1\"\r\n                        },\r\n                        {\r\n                            \"name\": \"pomidor\",\r\n                            \"description\": null,\r\n                            \"sequence\": \"1\",\r\n                            \"price\": 100,\r\n                            \"image\": null\r\n                        }\r\n                    ],\r\n                    \"name\": \"Burger 1\",\r\n                    \"description\": \"PikantnyBurger\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2500,\r\n                    \"image\": null\r\n                },\r\n                {\r\n                    \"addons\": [],\r\n                    \"name\": \"BurgerD\",\r\n                    \"description\": null,\r\n                    \"sequence\": \"1\",\r\n                    \"price\": 2499,\r\n                    \"image\": null\r\n                }\r\n            ],\r\n            \"name\": \"Burgery 3\",\r\n            \"description\": null,\r\n            \"sequence\": 0\r\n        },\r\n        {\r\n            \"items\": [\r\n                {\r\n                    \"addons\": [],\r\n                    \"name\": \"Pasta 2\",\r\n                    \"description\": \"Włoska pasta\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"image\": null\r\n                },\r\n                {\r\n                    \"addons\": [],\r\n                    \"name\": \"Pasta 3\",\r\n                    \"description\": \"Włoska pasta\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"image\": null\r\n                }\r\n            ],\r\n            \"name\": \"CoNowego\",\r\n            \"description\": \"Nasze nowe potrawy\",\r\n            \"sequence\": 0\r\n        }\r\n    ],\r\n    \"name\": \"MeSuperMenu\",\r\n    \"description\": \"testoweMenu\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/menu/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"menu",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete menu",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token 32bea5d51bd23d9ef952bb2935c2198c919c5b3f",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"1\",\r\n    \"categories\": [\r\n        {\r\n            \"id\": \"2\",\r\n            \"items\": [\r\n                {\r\n                    \"id\": \"1\",\r\n                    \"addons\": [\r\n                        {\r\n                            \"id\": \"1\",\r\n                            \"name\": \"pikle\",\r\n                            \"description\": null,\r\n                            \"sequence\": 0,\r\n                            \"price\": 100,\r\n                            \"image\": null,\r\n                            \"item\": \"1\"\r\n                        },\r\n                        {\r\n                            \"id\": \"2\",\r\n                            \"name\": \"pomidor\",\r\n                            \"description\": null,\r\n                            \"sequence\": \"1\",\r\n                            \"price\": 100,\r\n                            \"image\": null,\r\n                            \"item\": \"1\"\r\n                        }\r\n                    ],\r\n                    \"name\": \"Burger 1\",\r\n                    \"description\": \"PikantnyBurger\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2500,\r\n                    \"image\": null,\r\n                    \"category\": \"2\"\r\n                },\r\n                {\r\n                    \"id\": \"2\",\r\n                    \"addons\": [],\r\n                    \"name\": \"Burger2\",\r\n                    \"description\": null,\r\n                    \"sequence\": \"1\",\r\n                    \"price\": 2499,\r\n                    \"image\": null,\r\n                    \"category\": \"2\"\r\n                }\r\n            ],\r\n            \"name\": \"Burgery\",\r\n            \"description\": null,\r\n            \"sequence\": 0,\r\n            \"menu\": \"1\"\r\n        },\r\n        {\r\n            \"id\": \"1\",\r\n            \"items\": [\r\n                {\r\n                    \"id\": \"3\",\r\n                    \"addons\": [],\r\n                    \"name\": \"Pasta 2\",\r\n                    \"description\": \"Włoska pasta\",\r\n                    \"sequence\": 0,\r\n                    \"price\": 2000,\r\n                    \"image\": null,\r\n                    \"category\": \"1\"\r\n                }\r\n            ],\r\n            \"name\": \"CoNowego\",\r\n            \"description\": \"Nasze nowe potrawy\",\r\n            \"sequence\": 0,\r\n            \"menu\": \"1\"\r\n        }\r\n    ],\r\n    \"name\": \"FirstMenu\",\r\n    \"description\": \"testoweMenu\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/menu/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"menu",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "my orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/myorders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"myorders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order accept",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/myorders/59/accept",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"myorders",
+										"59",
+										"accept"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order complete",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/myorders/59/complete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"myorders",
+										"59",
+										"complete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order rejact",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "token 0ac1fe0d3ade58c85a8a95dca15c9b8a4b7dc46a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/myorders/59/rejact",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"myorders",
+										"59",
+										"rejact"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Venue Filters",
+			"item": [
+				{
+					"name": "Venue list filter by city",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?city=Opole",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "Opole"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list filter by free delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues?freeDelivery=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues"
+							],
+							"query": [
+								{
+									"key": "freeDelivery",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list filter by rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues?rating=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues"
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list filter by type of kitchen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues?kitchenType=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues"
+							],
+							"query": [
+								{
+									"key": "kitchenType",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list filter by rating and kitchen type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues?rating=2&kitchenType=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues"
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "2"
+								},
+								{
+									"key": "kitchenType",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list filter by availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues?availability=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues"
+							],
+							"query": [
+								{
+									"key": "availability",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venue Sorters",
+			"item": [
+				{
+					"name": "Venue list sort by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?sortBy=name",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list sort by rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?sortBy=rating",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "rating"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list sort by delivery cost",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?sortBy=deliveryCost,xd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "deliveryCost,xd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venue list sort by delivery cost Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?sortBy=deliveryMinimalOrderPrice",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "deliveryMinimalOrderPrice"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venue sort and filter",
+			"item": [
+				{
+					"name": "Venue list sort by rating filter by kitchen type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/venues/?kitchenType=1&orderBy=rating",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"venues",
+								""
+							],
+							"query": [
+								{
+									"key": "kitchenType",
+									"value": "1"
+								},
+								{
+									"key": "orderBy",
+									"value": "rating"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/cities/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"cities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venue list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/venues/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"venues",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venue Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/venues/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"venues",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Menu Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/menu-public/13",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"menu-public",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kitchen type list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/venues/kitchen/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"venues",
+						"kitchen",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

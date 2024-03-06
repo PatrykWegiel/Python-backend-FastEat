@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  db:
+    image: postgis/postgis
+    container_name: db
+    ports:
+      - "6002:5432"
+    environment:
+      POSTGRES_USER: "docker"
+      POSTGRES_PASSWORD: "docker"
+      POSTGRES_DB: "menubackend"
